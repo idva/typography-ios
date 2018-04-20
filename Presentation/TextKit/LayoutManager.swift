@@ -27,120 +27,120 @@ class LayoutManager: NSLayoutManager {
     var showLineFragment = false
     var showBoundingRectHeight = false
 
-    override func drawUnderlineForGlyphRange(glyphRange: NSRange, underlineType underlineVal: NSUnderlineStyle, baselineOffset: CGFloat, lineFragmentRect lineRect: CGRect, lineFragmentGlyphRange lineGlyphRange: NSRange, containerOrigin: CGPoint) {
+    override func drawUnderline(forGlyphRange glyphRange: NSRange, underlineType underlineVal: NSUnderlineStyle, baselineOffset: CGFloat, lineFragmentRect lineRect: CGRect, lineFragmentGlyphRange lineGlyphRange: NSRange, containerOrigin: CGPoint) {
         
         // Левая и правая X соордината фрагмента строки
-        let firstPointX =  CGRectGetMinX(lineRect) + containerOrigin.x
-        let secondPointX =  CGRectGetMaxX(lineRect) + containerOrigin.x
+        let firstPointX =  lineRect.minX + containerOrigin.x
+        let secondPointX =  lineRect.maxX + containerOrigin.x
         
-        let firstPointY =  CGRectGetMinY(lineRect) + containerOrigin.y
-        let secondPointY =  CGRectGetMaxY(lineRect) + containerOrigin.y
+        let firstPointY =  lineRect.minY + containerOrigin.y
+        let secondPointY =  lineRect.maxY + containerOrigin.y
         
         // Y координата линии шрифта
         let baselineOriginY = ceil(secondPointY - baselineOffset)
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSaveGState(context)
-        CGContextSetLineWidth(context, 2.0)
+        context?.saveGState()
+        context?.setLineWidth(2.0)
         
         // Достаем шрифт из атрибута первого символа
-        if let glyphFont = self.textStorage?.attribute(NSFontAttributeName, atIndex: glyphRange.location, effectiveRange: nil) as? UIFont {
+        if let glyphFont = self.textStorage?.attribute(NSAttributedStringKey.font, at: glyphRange.location, effectiveRange: nil) as? UIFont {
             
             if self.showLineFragment  {
-                UIColor.magentaColor().set()
-                let lineRect = CGRectMake(firstPointX, firstPointY, lineRect.width, lineRect.height)
+                UIColor.magenta.set()
+                let lineRect = CGRect(x: firstPointX, y: firstPointY, width: lineRect.width, height: lineRect.height)
                 UIBezierPath(rect: lineRect).stroke()
             }
             
             if self.showAscender {
                 UIColor(hex: 0x8C78A4).set()
-                let ascenderRect = CGRectMake(firstPointX, firstPointY, lineRect.width, glyphFont.ascender)
-                CGContextFillRect(context, ascenderRect)
+                let ascenderRect = CGRect(x: firstPointX, y: firstPointY, width: lineRect.width, height: glyphFont.ascender)
+                context?.fill(ascenderRect)
             }
             
             if self.showDescender {
                 UIColor(hex: 0x88C288).set()
-                let descenderRect = CGRectMake(firstPointX, baselineOriginY, lineRect.width, -glyphFont.descender)
-                CGContextFillRect(context, descenderRect)
+                let descenderRect = CGRect(x: firstPointX, y: baselineOriginY, width: lineRect.width, height: -glyphFont.descender)
+                context?.fill(descenderRect)
             }
             
             if self.showXHeight {
                 let xHeightOriginY = baselineOriginY - glyphFont.xHeight
                 UIColor(hex: 0xF3E0AB).set()
-                let xHeightRect = CGRectMake(firstPointX, xHeightOriginY, lineRect.width, glyphFont.xHeight)
-                CGContextFillRect(context, xHeightRect)
+                let xHeightRect = CGRect(x: firstPointX, y: xHeightOriginY, width: lineRect.width, height: glyphFont.xHeight)
+                context?.fill(xHeightRect)
             }
             
             if self.showCapHeight {
                 UIColor(hex: 0xF3ABAB).set()
                 let originY = baselineOriginY - glyphFont.capHeight
-                let capHeightRect = CGRectMake(firstPointX, originY, lineRect.width, glyphFont.capHeight)
-                CGContextFillRect(context, capHeightRect)
+                let capHeightRect = CGRect(x: firstPointX, y: originY, width: lineRect.width, height: glyphFont.capHeight)
+                context?.fill(capHeightRect)
             }
             
             if self.showLineGap {
                 let height = glyphFont.leading;
                 let originY = secondPointY - glyphFont.leading;
                 UIColor(hex: 0x66A6DB).set()
-                let leadingRect = CGRectMake(firstPointX, originY, lineRect.width, height)
-                CGContextFillRect(context, leadingRect)
+                let leadingRect = CGRect(x: firstPointX, y: originY, width: lineRect.width, height: height)
+                context?.fill(leadingRect)
             }
             
             if self.showLineHeight {
-                UIColor.lightGrayColor().set()
-                let ascenderRect = CGRectMake(firstPointX, firstPointY, lineRect.width, glyphFont.lineHeight)
-                CGContextFillRect(context, ascenderRect)
+                UIColor.lightGray.set()
+                let ascenderRect = CGRect(x: firstPointX, y: firstPointY, width: lineRect.width, height: glyphFont.lineHeight)
+                context?.fill(ascenderRect)
             }
             
             if self.showMeanline {
                 let xHeightOriginY = baselineOriginY - glyphFont.xHeight
-                UIColor.blueColor().set()
-                CGContextMoveToPoint(context, firstPointX, xHeightOriginY)
-                CGContextAddLineToPoint(context,secondPointX, xHeightOriginY)
-                CGContextStrokePath(context)
+                UIColor.blue.set()
+                context?.move(to: CGPoint(x: firstPointX, y: xHeightOriginY))
+                context?.addLine(to: CGPoint(x: secondPointX, y: xHeightOriginY))
+                context?.strokePath()
             }
         }
         
         if self.showBaseline {
-            UIColor.redColor().set()
-            CGContextMoveToPoint(context, firstPointX, baselineOriginY)
-            CGContextAddLineToPoint(context,secondPointX, baselineOriginY)
-            CGContextStrokePath(context)
+            UIColor.red.set()
+            context?.move(to: CGPoint(x: firstPointX, y: baselineOriginY))
+            context?.addLine(to: CGPoint(x: secondPointX, y: baselineOriginY))
+            context?.strokePath()
         }
         
         if self.showBoundingRectHeight {
-            let boundingRectHeightString = NSString(format: "\(Int(lineRect.height))")
-            let point = CGPointMake(secondPointX, firstPointY)
-            boundingRectHeightString.drawAtPoint(point, withAttributes: [NSForegroundColorAttributeName: UIColor.purpleColor(),
-                NSFontAttributeName: UIFont.systemFontOfSize(min(20.0, lineRect.height))])
+            let boundingRectHeightString = NSString(format: "\(Int(lineRect.height))" as NSString)
+            let point = CGPoint(x: secondPointX, y: firstPointY)
+            boundingRectHeightString.draw(at: point, withAttributes: [NSAttributedStringKey.foregroundColor: UIColor.purple,
+                NSAttributedStringKey.font: UIFont.systemFont(ofSize: min(20.0, lineRect.height))])
         }
 
         
-        CGContextRestoreGState(context)
+        context?.restoreGState()
         
-        super.drawUnderlineForGlyphRange(glyphRange, underlineType: underlineVal, baselineOffset: baselineOffset, lineFragmentRect: lineRect, lineFragmentGlyphRange: lineGlyphRange, containerOrigin: containerOrigin)
+        super.drawUnderline(forGlyphRange: glyphRange, underlineType: underlineVal, baselineOffset: baselineOffset, lineFragmentRect: lineRect, lineFragmentGlyphRange: lineGlyphRange, containerOrigin: containerOrigin)
     }
     
-    override func drawGlyphsForGlyphRange(glyphRange: NSRange, atPoint origin: CGPoint) {
+    override func drawGlyphs(forGlyphRange glyphRange: NSRange, at origin: CGPoint) {
         let context = UIGraphicsGetCurrentContext();
-        CGContextSaveGState(context)
+        context?.saveGState()
         
         // Если нужно показать линию шрифта, дополнительно вызываем метод для отрисовки подчеркивания
-        self.enumerateLineFragmentsForGlyphRange(glyphRange, usingBlock: { (rect, usedRect, textContainer, glyphRange, stop) -> Void in
-            self.underlineGlyphRange(glyphRange, underlineType: NSUnderlineStyle.StyleNone, lineFragmentRect:usedRect, lineFragmentGlyphRange: glyphRange, containerOrigin:origin)
+        self.enumerateLineFragments(forGlyphRange: glyphRange, using: { (rect, usedRect, textContainer, glyphRange, stop) -> Void in
+            self.underlineGlyphRange(glyphRange, underlineType: NSUnderlineStyle.styleNone, lineFragmentRect:usedRect, lineFragmentGlyphRange: glyphRange, containerOrigin:origin)
         })
         
         //Пробегаемся по всем символам и отрисовываем boundingRect для каждого
         if self.showBoundingRect {
             for i in glyphRange.location ..< NSMaxRange(glyphRange) {
                 
-                if let textContainer = self.textContainerForGlyphAtIndex(glyphRange.location, effectiveRange: nil) {
-                    var glyphRect = self.boundingRectForGlyphRange(NSMakeRange(i, 1), inTextContainer:textContainer)
+                if let textContainer = self.textContainer(forGlyphAt: glyphRange.location, effectiveRange: nil) {
+                    var glyphRect = self.boundingRect(forGlyphRange: NSMakeRange(i, 1), in:textContainer)
                     glyphRect.origin.x += origin.x;
                     glyphRect.origin.y += origin.y;
-                    glyphRect = CGRectInset(CGRectIntegral(glyphRect), 0.5, 0.5);
+                    glyphRect = glyphRect.integral.insetBy(dx: 0.5, dy: 0.5);
                     
-                    UIColor.purpleColor().set()
+                    UIColor.purple.set()
                     let path = UIBezierPath(rect: glyphRect)
                     path.lineWidth = 2.0;
                     path.stroke()
@@ -148,8 +148,8 @@ class LayoutManager: NSLayoutManager {
             }
         }
         
-        CGContextRestoreGState(context)
-        super.drawGlyphsForGlyphRange(glyphRange, atPoint: origin)
+        context?.restoreGState()
+        super.drawGlyphs(forGlyphRange: glyphRange, at: origin)
     }
 }
 

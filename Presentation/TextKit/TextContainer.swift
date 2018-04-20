@@ -15,9 +15,11 @@ TextContainer, отображающий текст в области, задан
 */
 class TextContainer: NSTextContainer {
     
-    override func lineFragmentRectForProposedRect(proposedRect: CGRect, atIndex characterIndex: Int, writingDirection baseWritingDirection: NSWritingDirection, remainingRect: UnsafeMutablePointer<CGRect>) -> CGRect {
-        
-        let lineFragmentRect = super.lineFragmentRectForProposedRect(proposedRect, atIndex:characterIndex, writingDirection:baseWritingDirection, remainingRect:remainingRect)
+    override func lineFragmentRect(forProposedRect proposedRect: CGRect,
+                                   at characterIndex: Int,
+                                   writingDirection baseWritingDirection: NSWritingDirection,
+                                   remaining remainingRect: UnsafeMutablePointer<CGRect>?) -> CGRect{
+        let lineFragmentRect = super.lineFragmentRect(forProposedRect: proposedRect, at:characterIndex, writingDirection:baseWritingDirection, remaining:remainingRect)
        
         var result = lineFragmentRect
         
@@ -33,14 +35,14 @@ class TextContainer: NSTextContainer {
         */
 
 //        let cgPath = PocketSVG.pathFromSVGFileNamed("android").takeUnretainedValue()
-        let cgPath = PocketSVG.pathFromSVGFileNamed("rlogo").takeUnretainedValue()
-        let path = UIBezierPath(CGPath: cgPath)
+        let cgPath = PocketSVG.path(fromSVGFileNamed: "rlogo").takeUnretainedValue()
+        let path = UIBezierPath(cgPath: cgPath)
 
         var originX = result.origin.x
         let originY = result.midY
         
         // Пробегаем слева по каждой точке, пока не встретим пересечение с заданной областью
-        while !path.containsPoint(CGPointMake(originX, originY)) {
+        while !path.contains(CGPoint(x: originX, y: originY)) {
             originX += 0.5
             if originX > result.maxX {
                 return CGRect.zero
@@ -49,11 +51,12 @@ class TextContainer: NSTextContainer {
         
         result.origin.x = originX
         result.size.width = 0;
-        while path.containsPoint(CGPointMake(result.maxX, originY)) {
+        while path.contains(CGPoint(x: result.maxX, y: originY)) {
             result.size.width += 0.5
         }
         
-        remainingRect.memory = CGRectMake(result.maxX, proposedRect.origin.y, proposedRect.width, proposedRect.height)
+        remainingRect?.pointee = CGRect(x: result.maxX, y: proposedRect.origin.y, width: proposedRect.width, height: proposedRect.height)
+        
         return result
     }
 }

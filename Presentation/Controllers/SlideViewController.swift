@@ -19,21 +19,21 @@ class SlideViewController: UIViewController {
         slideIndexLabel = UILabel()
         let verticalConstraint = NSLayoutConstraint(
             item: slideIndexLabel,
-            attribute: .Bottom,
-            relatedBy: .Equal,
+            attribute: .bottom,
+            relatedBy: .equal,
             toItem: view,
-            attribute: .Bottom,
+            attribute: .bottom,
             multiplier: 1.0,
             constant: 0)
         let horizontalConstraint = NSLayoutConstraint(
             item: slideIndexLabel!,
-            attribute: .Right,
-            relatedBy: .Equal,
+            attribute: .right,
+            relatedBy: .equal,
             toItem: view,
-            attribute: .Right,
+            attribute: .right,
             multiplier: 1.0,
             constant: -20)
-        slideIndexLabel.textColor = UIColor.darkTextColor()
+        slideIndexLabel.textColor = UIColor.darkText
         slideIndexLabel.translatesAutoresizingMaskIntoConstraints = false
         slideIndexLabel.font = UIFont(name: "Rambler-Regular", size: 25)
         slideIndexLabel.text = slideIndex > 0 ? "\(slideIndex)" : ""

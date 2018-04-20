@@ -24,7 +24,7 @@ class TextAttachmentViewController: SlideViewController {
         let attachmentString = NSAttributedString(attachment: attachment)
         
         // Добавляем к остальным символам
-        attributedText.insertAttributedString(attachmentString, atIndex: 7)
+        attributedText.insert(attachmentString, at: 7)
         
         ramblerTextView.attributedText = attributedText.copy() as! NSAttributedString
     }

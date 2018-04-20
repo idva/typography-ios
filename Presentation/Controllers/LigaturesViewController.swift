@@ -17,14 +17,12 @@ class LigaturesViewController: TextViewSlideViewController, UIPickerViewDataSour
         let normalFont = UIFont(name: "HoeflerText-Italic", size: 300)
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.Center
+        paragraphStyle.alignment = NSTextAlignment.center
         
-        let attributes = [
-            NSFontAttributeName : normalFont!,
-            NSForegroundColorAttributeName : UIColor.darkTextColor(),
-            NSParagraphStyleAttributeName : paragraphStyle,
-            NSLigatureAttributeName : 0
-        ];
+        let attributes = [NSAttributedStringKey.font : normalFont,
+                          NSAttributedStringKey.foregroundColor : UIColor.darkText,
+                          NSAttributedStringKey.paragraphStyle : paragraphStyle.copy(),
+                          NSAttributedStringKey.ligature: 0];
         
         let attributedString = NSAttributedString(string: "still", attributes: attributes)
         return attributedString
@@ -32,21 +30,21 @@ class LigaturesViewController: TextViewSlideViewController, UIPickerViewDataSour
     
     // MARK: - Picker View
 
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return options.count
     }
     
-    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let normalFont = UIFont.systemFontOfSize(100.0)
-        let attributes = [NSFontAttributeName : normalFont, NSForegroundColorAttributeName : UIColor.darkTextColor()];
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let normalFont = UIFont.systemFont(ofSize: 100.0)
+        let attributes = [NSAttributedStringKey.font : normalFont, NSAttributedStringKey.foregroundColor : UIColor.darkText];
         return NSAttributedString(string: "\(options[row])", attributes: attributes)
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.textStorage.addAttribute(NSLigatureAttributeName, value: row, range: NSMakeRange(0, self.textStorage.length))
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.textStorage.addAttribute(NSAttributedStringKey.ligature, value: row, range: NSMakeRange(0, self.textStorage.length))
     }
 }

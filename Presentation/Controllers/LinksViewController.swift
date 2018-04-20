@@ -15,10 +15,10 @@ class LinksViewController: SlideViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let textKitUrl = NSURL(string: "https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/CustomTextProcessing/CustomTextProcessing.html")
-        textKitTextView.textStorage.addAttribute(NSLinkAttributeName, value: textKitUrl!, range: NSMakeRange(1, textKitTextView.textStorage.length-1))
+        let textKitUrl = URL(string: "https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/CustomTextProcessing/CustomTextProcessing.html")
+        textKitTextView.textStorage.addAttribute(NSAttributedStringKey.link, value: textKitUrl!, range: NSMakeRange(1, textKitTextView.textStorage.length-1))
         
-        let attributedStringUrl = NSURL(string: "https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/AttributedStrings/Articles/standardAttributes.html")
-        attributedStringTextView.textStorage.addAttribute(NSLinkAttributeName, value: attributedStringUrl!, range: NSMakeRange(1, attributedStringTextView.textStorage.length-1))
+        let attributedStringUrl = URL(string: "https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/AttributedStrings/Articles/standardAttributes.html")
+        attributedStringTextView.textStorage.addAttribute(NSAttributedStringKey.link, value: attributedStringUrl!, range: NSMakeRange(1, attributedStringTextView.textStorage.length-1))
     }
 }

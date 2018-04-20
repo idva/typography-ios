@@ -38,9 +38,9 @@ class TextViewSlideViewController: SlideViewController {
         
         // Создаем UITextView c заданным NSTextContainer
         textView = UITextView(frame: textViewContainer.bounds, textContainer: textContainer)
-        textView.backgroundColor = UIColor.clearColor()
-        textView.textContainerInset = UIEdgeInsetsZero
-        textView.editable = false
+        textView.backgroundColor = UIColor.clear
+        textView.textContainerInset = UIEdgeInsets.zero
+        textView.isEditable = false
         textViewContainer.addSubview(textView)
     }
     

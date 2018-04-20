@@ -33,25 +33,25 @@ class TextStorageExampleViewController: SlideViewController, UITextViewDelegate 
         
         // Создаем UITextView c заданным NSTextContainer
         let textView = UITextView(frame: self.textViewContainer.bounds, textContainer: textContainer)
-        textView.autocorrectionType = .No
-        textView.keyboardType = .EmailAddress
-        textView.backgroundColor = UIColor.clearColor()
+        textView.autocorrectionType = .no
+        textView.keyboardType = .emailAddress
+        textView.backgroundColor = UIColor.clear
         textViewContainer.addSubview(textView)
     }
     
     func createAttributedString() -> NSAttributedString {
         let normalFont = UIFont(name: "Georgia", size: 30)
         let attributes = [
-            NSFontAttributeName : normalFont!
+            NSAttributedStringKey.font : normalFont!
         ];
         let text = "Все докладчики приглашаются на фуршет :) Фуршет будет для вас бесплатен и очень вкусный (для всех) :) Начинается он в 31 мая, в 19:00 прямо в Сколково. Мы спустимся по широкой лестнице на зелёную лужайку и будем пировать. На случай дождя у нас есть багор и мешок с песком шатёр."
         let attributedString = NSMutableAttributedString(string: text, attributes: attributes)
-        attributedString.addAttribute(NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(249, 22))
+        attributedString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: NSMakeRange(249, 22))
         return attributedString
     }
     
-    @IBAction func tap(sender: UITapGestureRecognizer) {
-        UIView.animateWithDuration(0.35, animations: { () -> Void in
+    @IBAction func tap(_ sender: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.35, animations: { () -> Void in
             self.textViewContainer.alpha = 1 - self.textViewContainer.alpha
             self.sourceView.alpha = 1 - self.sourceView.alpha
         })

@@ -12,8 +12,8 @@ class TextKitFeaturesViewController: SlideViewController {
 
     @IBOutlet var labels: [YETIFallingLabel]!
 
-    @IBAction func tap(sender: AnyObject) {
-        for (_, view) in self.labels.enumerate() {
+    @IBAction func tap(_ sender: AnyObject) {
+        for (_, view) in self.labels.enumerated() {
             // Анимация запускается при смене текста
             view.text = view.textStorage.string
         }

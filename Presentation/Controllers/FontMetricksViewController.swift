@@ -11,13 +11,13 @@ import UIKit
 class FontMetricksViewController: TextViewSlideViewController {
 
     override func createAttributedString() -> NSAttributedString {
-        let fontDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptorFamilyAttribute : "Times New Roman"])
+        let fontDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family : "Times New Roman"])
         let normalFont = UIFont(descriptor: fontDescriptor, size: 300)
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.Center
+        paragraphStyle.alignment = NSTextAlignment.center
         
-        let attributes = [NSFontAttributeName : normalFont, NSForegroundColorAttributeName : UIColor.darkTextColor(), NSParagraphStyleAttributeName : paragraphStyle];
+        let attributes = [NSAttributedStringKey.font : normalFont, NSAttributedStringKey.foregroundColor : UIColor.darkText, NSAttributedStringKey.paragraphStyle : paragraphStyle];
         let attributedString = NSMutableAttributedString(string: "yKbx", attributes: attributes)
         return attributedString
     }
@@ -28,32 +28,32 @@ class FontMetricksViewController: TextViewSlideViewController {
         self.layoutManager.showBoundingRect = true
     }
     
-    @IBAction func capHeightSwitchValueChanged(sender: UISwitch) {
-        self.layoutManager.showCapHeight = sender.on
+    @IBAction func capHeightSwitchValueChanged(_ sender: UISwitch) {
+        self.layoutManager.showCapHeight = sender.isOn
         self.updateView()
     }
-    @IBAction func xHeightSwitchValueChanged(sender: UISwitch) {
-        self.layoutManager.showXHeight = sender.on
+    @IBAction func xHeightSwitchValueChanged(_ sender: UISwitch) {
+        self.layoutManager.showXHeight = sender.isOn
         self.updateView()
     }
-    @IBAction func ascenderSwitchValueChanged(sender: UISwitch) {
-        self.layoutManager.showAscender = sender.on
+    @IBAction func ascenderSwitchValueChanged(_ sender: UISwitch) {
+        self.layoutManager.showAscender = sender.isOn
         self.updateView()
     }
-    @IBAction func descenderHeightSwitchValueChanged(sender: UISwitch) {
-        self.layoutManager.showDescender = sender.on
+    @IBAction func descenderHeightSwitchValueChanged(_ sender: UISwitch) {
+        self.layoutManager.showDescender = sender.isOn
         self.updateView()
     }
-    @IBAction func lineGapHeightSwitchValueChanged(sender: UISwitch) {
-        self.layoutManager.showLineGap = sender.on
+    @IBAction func lineGapHeightSwitchValueChanged(_ sender: UISwitch) {
+        self.layoutManager.showLineGap = sender.isOn
         self.updateView()
     }
-    @IBAction func lineLineHeightSwitchValueChanged(sender: UISwitch) {
-        self.layoutManager.showLineHeight = sender.on
+    @IBAction func lineLineHeightSwitchValueChanged(_ sender: UISwitch) {
+        self.layoutManager.showLineHeight = sender.isOn
         self.updateView()
     }
     
     func updateView() {
-        self.layoutManager.invalidateDisplayForCharacterRange(NSMakeRange(0, self.textStorage.length))
+        self.layoutManager.invalidateDisplay(forCharacterRange: NSMakeRange(0, self.textStorage.length))
     }
 }

@@ -27,56 +27,56 @@ class CompareViewController: SlideViewController {
         addBorderToView(label);
     }
     
-    func addBorderToView(view: UIView) {
+    func addBorderToView(_ view: UIView) {
         view.layer.borderWidth = 1.5
-        view.layer.borderColor = UIColor.purpleColor().CGColor
+        view.layer.borderColor = UIColor.purple.cgColor
     }
     
-    @IBAction func usesFontLeadingButtonTapped(sender: UIButton) {
-        sender.selected = !sender.selected
-        textView.layoutManager.usesFontLeading = !sender.selected
-        textView.layoutManager.invalidateLayoutForCharacterRange(NSMakeRange(0, textView.text.characters.count), actualCharacterRange: nil)        
+    @IBAction func usesFontLeadingButtonTapped(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        textView.layoutManager.usesFontLeading = !sender.isSelected
+        textView.layoutManager.invalidateLayout(forCharacterRange: NSMakeRange(0, textView.text.count), actualCharacterRange: nil)
     }
     
-    @IBAction func textContainerInsetButtonTapped(sender: UIButton) {
-        sender.selected = !sender.selected
-        if sender.selected {
-            textView.textContainerInset = UIEdgeInsetsZero
+    @IBAction func textContainerInsetButtonTapped(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected {
+            textView.textContainerInset = UIEdgeInsets.zero
         } else {
             textView.textContainerInset = UIEdgeInsetsMake(8, 0, 8, 0)
         }
         textView.layoutIfNeeded()
     }
     
-    @IBAction func textContainerLineFragmentPaddingButtonTapped(sender: UIButton) {
-        sender.selected = !sender.selected
-        if sender.selected {
+    @IBAction func textContainerLineFragmentPaddingButtonTapped(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected {
             textView.textContainer.lineFragmentPadding = 0
         } else {
             textView.textContainer.lineFragmentPadding = 5
         }
-        textView.layoutManager.invalidateLayoutForCharacterRange(NSMakeRange(0, textView.text.characters.count), actualCharacterRange: nil)
-        textView.layoutManager.invalidateDisplayForCharacterRange(NSMakeRange(0, textView.text.characters.count))
+        textView.layoutManager.invalidateLayout(forCharacterRange: NSMakeRange(0, textView.text.characters.count), actualCharacterRange: nil)
+        textView.layoutManager.invalidateDisplay(forCharacterRange: NSMakeRange(0, textView.text.characters.count))
     }
     
-    @IBAction func tapGesture(sender: UITapGestureRecognizer) {
-        boundingRectTextView.hidden = true
+    @IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
+        boundingRectTextView.isHidden = true
 
         switch tapCount % 4 {
             case 0:
-                lineFragmentButton.hidden = !lineFragmentButton.hidden
+                lineFragmentButton.isHidden = !lineFragmentButton.isHidden
                 
             case 1:
-                textContainerInsetButton.hidden = !textContainerInsetButton.hidden
+                textContainerInsetButton.isHidden = !textContainerInsetButton.isHidden
                 
             case 2:
-                fontLeadingButton.hidden = !fontLeadingButton.hidden
+                fontLeadingButton.isHidden = !fontLeadingButton.isHidden
             
             case 3:
-                lineFragmentButton.hidden = true
-                textContainerInsetButton.hidden = true
-                fontLeadingButton.hidden = true
-                boundingRectTextView.hidden = false
+                lineFragmentButton.isHidden = true
+                textContainerInsetButton.isHidden = true
+                fontLeadingButton.isHidden = true
+                boundingRectTextView.isHidden = false
             
             default:
                 break

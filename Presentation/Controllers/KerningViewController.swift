@@ -14,40 +14,38 @@ class KerningViewController: TextViewSlideViewController {
     @IBOutlet weak var kerningSwitch: UISwitch!
     
     override func createAttributedString() -> NSAttributedString {
-        let normalFont = UIFont.systemFontOfSize(200)
+        let normalFont = UIFont.systemFont(ofSize: 200)
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.Center
+        paragraphStyle.alignment = NSTextAlignment.center
         
-        let attributes = [
-            NSFontAttributeName : normalFont,
-            NSForegroundColorAttributeName : UIColor.darkTextColor(),
-            NSParagraphStyleAttributeName : paragraphStyle,
-            NSKernAttributeName : 0
-        ];
+        let attributes = [NSAttributedStringKey.font : normalFont,
+                          NSAttributedStringKey.foregroundColor : UIColor.darkText,
+                          NSAttributedStringKey.paragraphStyle : paragraphStyle.copy(),
+                          NSAttributedStringKey.kern: 0];
         
         let attributedString = NSAttributedString(string: "Tornado", attributes: attributes)
         return attributedString
     }
     
     
-    @IBAction func toggleKerning(sender: UISwitch) {
-        if sender.on {
+    @IBAction func toggleKerning(_ sender: UISwitch) {
+        if sender.isOn {
             // Удаляем установленное ранее значение атрибута, оставляем значение по умолчанию
-            self.textStorage.removeAttribute(NSKernAttributeName, range: NSMakeRange(0, self.textStorage.length))
+            self.textStorage.removeAttribute(NSAttributedStringKey.kern, range: NSMakeRange(0, self.textStorage.length))
         } else {
             // Если для NSKernAttributeName установить значение 0, то кернинг будет отключен
             self.updateKerningValue(0)
             self.slider.value = 0
-            self.slider.sendActionsForControlEvents(.ValueChanged)
+            self.slider.sendActions(for: .valueChanged)
         }
     }
     
-    @IBAction func sliderValueDidChange(sender: UISlider) {
+    @IBAction func sliderValueDidChange(_ sender: UISlider) {
         self.updateKerningValue(slider.value)
     }
     
-    func updateKerningValue(value: Float) {
-        self.textStorage.addAttribute(NSKernAttributeName, value: value, range: NSMakeRange(0, self.textStorage.length))
+    func updateKerningValue(_ value: Float) {
+        self.textStorage.addAttribute(NSAttributedStringKey.kern, value: value, range: NSMakeRange(0, self.textStorage.length))
     }
 }

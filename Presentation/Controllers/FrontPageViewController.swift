@@ -17,9 +17,9 @@ class FrontPageViewController: SlideViewController {
         super.viewDidLoad()
         
         var paths = [UIBezierPath]()
-        for (_, excludeView) in self.excludeViews.enumerate() {
+        for (_, excludeView) in self.excludeViews.enumerated() {
             let viewFrame = excludeView.frame
-            let exclusionRect = view.convertRect(viewFrame, toView:backgroundTextView)
+            let exclusionRect = view.convert(viewFrame, to:backgroundTextView)
             let exclusion = UIBezierPath(rect:exclusionRect);
             paths.append(exclusion)
         }

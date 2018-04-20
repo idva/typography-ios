@@ -15,44 +15,44 @@ class TextKitStackProgrammaticallyViewController: SlideViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        borderView.layer.borderColor = UIColor.redColor().CGColor
+        borderView.layer.borderColor = UIColor.red.cgColor
         borderView.layer.borderWidth = 2.0
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateBorderViewFrameAnimated(false)
     }
     
-    @IBAction func tapGesture(sender: AnyObject) {
+    @IBAction func tapGesture(_ sender: AnyObject) {
         tapCount = tapCount + 1
         updateBorderViewFrameAnimated(true)
     }
     
-    func updateBorderViewFrameAnimated(animated: Bool) {
-        var borderViewRect = CGRectZero
+    func updateBorderViewFrameAnimated(_ animated: Bool) {
+        var borderViewRect = CGRect.zero
         
         switch tapCount % 4 {
             case 0:
-                borderViewRect = CGRectMake(94, 260, 756, 70)
+                borderViewRect = CGRect(x: 94, y: 260, width: 756, height: 70)
                 
             case 1:
-                borderViewRect = CGRectMake(94, 330, 756, 80)
+                borderViewRect = CGRect(x: 94, y: 330, width: 756, height: 80)
                 
             case 2:
-                borderViewRect = CGRectMake(94, 414, 756, 80)
+                borderViewRect = CGRect(x: 94, y: 414, width: 756, height: 80)
                 
             case 3:
-                borderViewRect = CGRectMake(94, 498, 850, 80)
+                borderViewRect = CGRect(x: 94, y: 498, width: 850, height: 80)
                 
             default:
                 break
         }
         
         if animated {
-            UIView.animateWithDuration(0.35) {
+            UIView.animate(withDuration: 0.35, animations: {
                 self.borderView.frame = borderViewRect
-            }
+            }) 
         } else {
             borderView.frame = borderViewRect
         }

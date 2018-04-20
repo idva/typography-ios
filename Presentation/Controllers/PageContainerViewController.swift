@@ -51,22 +51,22 @@ class PageContainerViewController: UIViewController, UIPageViewControllerDataSou
         
         let firstSlideViewController = viewControllerAtIndex(0)
         
-        pageViewController.setViewControllers([firstSlideViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-        view.backgroundColor = UIColor.whiteColor()
+        pageViewController.setViewControllers([firstSlideViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+        view.backgroundColor = UIColor.white
         let pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor();
-        pageControl.currentPageIndicatorTintColor = UIColor.blackColor();
+        pageControl.pageIndicatorTintColor = UIColor.lightGray;
+        pageControl.currentPageIndicatorTintColor = UIColor.black;
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "PageViewControllerEmbedSegue") {
-            pageViewController = segue.destinationViewController as! UIPageViewController;
+            pageViewController = segue.destination as! UIPageViewController;
             pageViewController.delegate = self
             pageViewController.dataSource = self
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let slideViewController = viewController as? SlideViewController
         let index = slideViewController?.slideIndex
         
@@ -79,7 +79,7 @@ class PageContainerViewController: UIViewController, UIPageViewControllerDataSou
         return viewControllerAtIndex(currentIndex)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         let slideViewController = viewController as? SlideViewController
         let index = slideViewController?.slideIndex
@@ -93,74 +93,74 @@ class PageContainerViewController: UIViewController, UIPageViewControllerDataSou
         return viewControllerAtIndex(currentIndex)
     }
     
-    func viewControllerAtIndex(index: Int) -> UIViewController {
+    func viewControllerAtIndex(_ index: Int) -> UIViewController {
         let storyboardId = pageControllers[index]
-        let controller = storyboard?.instantiateViewControllerWithIdentifier(storyboardId) as! SlideViewController
+        let controller = storyboard?.instantiateViewController(withIdentifier: storyboardId) as! SlideViewController
         controller.slideIndex = index
         return controller
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pageControllers.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return currentIndex
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pageControllers.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CellIdentifier", forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath)
         cell.contentView.viewWithTag(50)?.removeFromSuperview()
 
         let cellBounds = cell.contentView.bounds;
         let viewBounds = view.bounds;
         
         let viewController = viewControllerAtIndex(indexPath.row)
-        viewController.view.userInteractionEnabled = false
-        viewController.view.frame = CGRectMake((cellBounds.size.width - viewBounds.size.width)/2.0,
-                                               (cellBounds.size.height - viewBounds.size.height)/2.0,
-                                               viewBounds.size.width,
-                                               viewBounds.size.height)
+        viewController.view.isUserInteractionEnabled = false
+        viewController.view.frame = CGRect(x: (cellBounds.size.width - viewBounds.size.width)/2.0,
+                                               y: (cellBounds.size.height - viewBounds.size.height)/2.0,
+                                               width: viewBounds.size.width,
+                                               height: viewBounds.size.height)
         cell.contentView.addSubview(viewController.view)
         let scale = cellBounds.size.height/viewBounds.size.height;
-        viewController.view.transform = CGAffineTransformMakeScale(scale, scale)
+        viewController.view.transform = CGAffineTransform(scaleX: scale, y: scale)
         viewController.view.tag = 50
         return cell
     }
  
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         currentIndex = indexPath.row
         let controller = viewControllerAtIndex(indexPath.row)
         pageViewController.setViewControllers([controller],
-                                              direction:.Forward,
+                                              direction:.forward,
                                               animated: false,
                                               completion: nil)
-        contentsCollectionViewTopGesture.constant = -CGRectGetHeight(contentsCollectionView.frame)
+        contentsCollectionViewTopGesture.constant = -contentsCollectionView.frame.height
         view.layoutIfNeeded()
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let aspect = view.frame.size.width/view.frame.size.height
-        return CGSizeMake(collectionView.frame.size.height * aspect, collectionView.frame.size.height)
+        return CGSize(width: collectionView.frame.size.height * aspect, height: collectionView.frame.size.height)
     }
     
-    @IBAction func downSwipeGesture(sender: AnyObject) {
-        let indexPath = NSIndexPath(forRow: currentIndex, inSection: 0)
-        contentsCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: false)
+    @IBAction func downSwipeGesture(_ sender: AnyObject) {
+        let indexPath = IndexPath(row: currentIndex, section: 0)
+        contentsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
         contentsCollectionViewTopGesture.constant = 0
-        UIView.animateWithDuration(0.35) { 
+        UIView.animate(withDuration: 0.35, animations: { 
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
     
-    @IBAction func upSwipeGesure(sender: AnyObject) {
-        contentsCollectionViewTopGesture.constant = -CGRectGetHeight(contentsCollectionView.frame)
-        UIView.animateWithDuration(0.35) {
+    @IBAction func upSwipeGesure(_ sender: AnyObject) {
+        contentsCollectionViewTopGesture.constant = -contentsCollectionView.frame.height
+        UIView.animate(withDuration: 0.35, animations: {
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
 }

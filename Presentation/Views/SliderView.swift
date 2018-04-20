@@ -14,22 +14,23 @@ class SliderView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.slider.userInteractionEnabled = false
-        self.slider.addTarget(self, action: #selector(SliderView.sliderValueChanged(_:)), forControlEvents: .ValueChanged)
+        self.slider.isUserInteractionEnabled = false
+        self.slider.addTarget(self, action: #selector(SliderView.sliderValueChanged(_:)), for: .valueChanged)
         let panGsture = UIPanGestureRecognizer(target: self, action: #selector(SliderView.pan(_:)))
         self.addGestureRecognizer(panGsture)
     }
     
-    func pan(recognizer:UIPanGestureRecognizer) {
-        let point = recognizer.locationInView(slider)
+    
+    @objc func pan(_ recognizer:UIPanGestureRecognizer) {
+        let point = recognizer.location(in: slider)
         let multiplier = Float(point.x / slider.frame.size.width)
         let value = self.slider.minimumValue + multiplier * (self.slider.maximumValue - self.slider.minimumValue)
 
         self.slider.setValue(value, animated: true)
-        self.slider.sendActionsForControlEvents(.ValueChanged)
+        self.slider.sendActions(for: .valueChanged)
     }
     
-    func sliderValueChanged(slider: UISlider) {
+    @objc func sliderValueChanged(_ slider: UISlider) {
         self.valueLabel.text = String(format:"%.1f", self.slider.value)
     }
 }

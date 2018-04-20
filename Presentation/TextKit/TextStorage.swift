@@ -21,36 +21,36 @@ class TextStorage: NSTextStorage {
         return innerAttributedString.string
     }
    
-    override func attributesAtIndex(location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject] {
-        return innerAttributedString.attributesAtIndex(location, effectiveRange: range)
+    override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedStringKey : Any] {
+        return innerAttributedString.attributes(at: location, effectiveRange: range)
     }
     
-    override func replaceCharactersInRange(range: NSRange, withString str: String) {
+    override func replaceCharacters(in range: NSRange, with str: String) {
         beginEditing()
-        innerAttributedString.replaceCharactersInRange(range, withString:str)
-        edited([.EditedCharacters, .EditedAttributes], range: range, changeInLength: str.characters.count - range.length)
+        innerAttributedString.replaceCharacters(in: range, with:str)
+        edited([.editedCharacters, .editedAttributes], range: range, changeInLength: str.characters.count - range.length)
         endEditing()
     }
     
-    override func setAttributes(attrs: [String : AnyObject]!, range: NSRange) {
+    override func setAttributes(_ attrs: [NSAttributedStringKey : Any]!, range: NSRange) {
         beginEditing()
         innerAttributedString.setAttributes(attrs, range: range)
-        edited(.EditedAttributes, range: range, changeInLength: 0)
+        edited(.editedAttributes, range: range, changeInLength: 0)
         endEditing()
     }
     
     override func processEditing() {
-        let extendedRange = (self.string as NSString).paragraphRangeForRange(editedRange)
+        let extendedRange = (self.string as NSString).paragraphRange(for: editedRange)
         
-        removeAttribute(NSBackgroundColorAttributeName, range: extendedRange)
+        removeAttribute(NSAttributedStringKey.backgroundColor, range: extendedRange)
         
         let pattern = "@channel"
-        let regex = try! NSRegularExpression(pattern: pattern, options: [.CaseInsensitive])
+        let regex = try! NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
         
-        regex.enumerateMatchesInString(innerAttributedString.string, options: [], range: extendedRange) {
+        regex.enumerateMatches(in: innerAttributedString.string, options: [], range: extendedRange) {
             match, flags, stop in
-            self.innerAttributedString.addAttribute(NSBackgroundColorAttributeName,
-                                                    value: UIColor.yellowColor(),
+            self.innerAttributedString.addAttribute(NSAttributedStringKey.backgroundColor,
+                                                    value: UIColor.yellow,
                                                     range: match!.range)
         }
         

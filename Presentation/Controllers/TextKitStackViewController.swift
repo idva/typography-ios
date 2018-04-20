@@ -19,14 +19,14 @@ class TextKitStackViewController: SlideViewController {
     @IBOutlet weak var textContainerLabel: UILabel!
     
     
-    @IBAction func tap(sender: UITapGestureRecognizer) {
-        UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseOut, animations: { () -> Void in
+    @IBAction func tap(_ sender: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: { () -> Void in
 
             let initialState = self.arrowView.alpha > 0
-            self.textViewLabel.center =  initialState ? CGPointMake(817, 440) : CGPointMake(258.0, 237.0)
-            self.textStorageLabel.center = initialState ? CGPointMake(216, 569) : CGPointMake(507.0, 625.0)
-            self.layoutManagerLabel.center = initialState ? CGPointMake(514, 275) : CGPointMake(507.0, 432.0)
-            self.textContainerLabel.center = initialState ? CGPointMake(216, 440) : CGPointMake(762.0, 237.0)
+            self.textViewLabel.center =  initialState ? CGPoint(x: 817, y: 440) : CGPoint(x: 258.0, y: 237.0)
+            self.textStorageLabel.center = initialState ? CGPoint(x: 216, y: 569) : CGPoint(x: 507.0, y: 625.0)
+            self.layoutManagerLabel.center = initialState ? CGPoint(x: 514, y: 275) : CGPoint(x: 507.0, y: 432.0)
+            self.textContainerLabel.center = initialState ? CGPoint(x: 216, y: 440) : CGPoint(x: 762.0, y: 237.0)
             
             self.arrowView.alpha = 1 - self.arrowView.alpha
             self.mvcView.alpha = 1 - self.mvcView.alpha
