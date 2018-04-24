@@ -42,6 +42,7 @@ class KerningViewController: TextViewSlideViewController {
     }
     
     @IBAction func sliderValueDidChange(_ sender: UISlider) {
+        self.kerningSwitch.setOn(slider.value != 0, animated: true)
         self.updateKerningValue(slider.value)
     }
     

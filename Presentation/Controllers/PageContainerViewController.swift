@@ -31,7 +31,6 @@ class PageContainerViewController: UIViewController, UIPageViewControllerDataSou
             "ParagraphStyleViewController",
             "KerningViewController",
             "LigaturesViewController",
-            "FirstPartResumeViewController",
             "TextKitStackViewController",
             "TextStorageViewController",
             "TextContainerViewController",

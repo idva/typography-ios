@@ -9,8 +9,8 @@
 import UIKit
 
 class LigaturesViewController: TextViewSlideViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    let options = ["Отключить лигатуры", "Обязательные лигатуры", "Все лигатуры"]
-
+    let options = ["No ligatures", "Default ligatures", "All ligatures"]
+    
     @IBOutlet weak var pickerView: UIPickerView!
 
     override func createAttributedString() -> NSAttributedString {
@@ -19,7 +19,7 @@ class LigaturesViewController: TextViewSlideViewController, UIPickerViewDataSour
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.center
         
-        let attributes = [NSAttributedStringKey.font : normalFont,
+        let attributes = [NSAttributedStringKey.font : normalFont!,
                           NSAttributedStringKey.foregroundColor : UIColor.darkText,
                           NSAttributedStringKey.paragraphStyle : paragraphStyle.copy(),
                           NSAttributedStringKey.ligature: 0];
