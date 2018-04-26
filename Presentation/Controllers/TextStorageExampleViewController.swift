@@ -44,7 +44,7 @@ class TextStorageExampleViewController: SlideViewController, UITextViewDelegate 
         let attributes = [
             NSAttributedStringKey.font : normalFont!
         ];
-        let text = "Все докладчики приглашаются на фуршет :) Фуршет будет для вас бесплатен и очень вкусный (для всех) :) Начинается он в 31 мая, в 19:00 прямо в Сколково. Мы спустимся по широкой лестнице на зелёную лужайку и будем пировать. На случай дождя у нас есть багор и мешок с песком шатёр."
+        let text = "Все докладчики приглашаются на фуршет :) Фуршет будет для вас бесплатен и очень вкусный (для всех) :) Начинается он в 31 мая, в 19:00 прямо в Сколково. Мы спустимся по широкой лестнице на зелёную лужайку и будем пировать. На случай дождя у нас есть багор и мешок с песком шатёр. @channel"
         let attributedString = NSMutableAttributedString(string: text, attributes: attributes)
         attributedString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: NSMakeRange(249, 22))
         return attributedString

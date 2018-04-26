@@ -155,9 +155,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLv-sc-oeH">
-                                <rect key="frame" x="50" y="680" width="689" height="35"/>
+                                <rect key="frame" x="50" y="685" width="654" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="tap_small">
                                     <attributedString key="attributedTitle">
                                         <fragment content="textView">
                                             <attributes>
@@ -360,9 +360,9 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="efu-MR-eFN">
-                                <rect key="frame" x="50" y="564" width="689" height="35"/>
+                                <rect key="frame" x="50" y="569" width="524" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="tap_small">
                                     <attributedString key="attributedTitle">
                                         <fragment content="textView">
                                             <attributes>
@@ -565,9 +565,9 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I55-v7-dRB">
-                                <rect key="frame" x="50" y="622" width="689" height="35"/>
+                                <rect key="frame" x="50" y="627" width="654" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="tap_small">
                                     <attributedString key="attributedTitle">
                                         <fragment content="textView">
                                             <attributes>
@@ -837,7 +837,7 @@
                                 </connections>
                             </button>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xaa-zv-iqy">
-                                <rect key="frame" x="50" y="548" width="913" height="154"/>
+                                <rect key="frame" x="50" y="548" width="913" height="167"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <attributedString key="attributedText">
@@ -992,8 +992,35 @@
                                             </paragraphStyle>
                                         </attributes>
                                     </fragment>
+                                    <fragment content="(">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="Menlo-Regular"/>
+                                            <integer key="NSLigature" value="0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" defaultTabInterval="43.299999999999997" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="43.299999237060547">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=".UsesFontLeading">
+                                        <attributes>
+                                            <color key="NSColor" red="0.95580078125000001" green="0.021522436989893787" blue="0.094954036435931921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="25" name="Menlo-Regular"/>
+                                            <integer key="NSLigature" value="0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" defaultTabInterval="43.299999999999997" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="43.299999237060547">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
                                     <fragment>
-                                        <string key="content">(.UsesFontLeading)
+                                        <string key="content">)
 
 </string>
                                         <attributes>
@@ -1095,6 +1122,13 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tap" translatesAutoresizingMaskIntoConstraints="NO" id="hmj-o9-6HA">
+                                <rect key="frame" x="884" y="638" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="sIl-dF-4mA"/>
+                                    <constraint firstAttribute="width" constant="90" id="t3e-Ol-pmL"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -1102,6 +1136,7 @@
                             <constraint firstItem="Gqg-2d-cdZ" firstAttribute="height" secondItem="NWc-uE-VcJ" secondAttribute="height" id="AdH-VB-ice"/>
                             <constraint firstItem="Gqg-2d-cdZ" firstAttribute="top" secondItem="F1r-pz-dbv" secondAttribute="bottom" constant="120" id="FX4-Kk-9iR"/>
                             <constraint firstItem="NWc-uE-VcJ" firstAttribute="width" secondItem="Gqg-2d-cdZ" secondAttribute="width" id="Uew-Yi-OGj"/>
+                            <constraint firstAttribute="trailing" secondItem="hmj-o9-6HA" secondAttribute="trailing" constant="50" id="Z4d-IO-5cA"/>
                             <constraint firstItem="Gqg-2d-cdZ" firstAttribute="top" secondItem="ekt-He-mNd" secondAttribute="bottom" constant="30" id="ZOH-xN-mdQ"/>
                             <constraint firstItem="DGH-xd-6QZ" firstAttribute="centerX" secondItem="NWc-uE-VcJ" secondAttribute="centerX" id="fdv-f6-xLI"/>
                             <constraint firstItem="NWc-uE-VcJ" firstAttribute="top" secondItem="Gqg-2d-cdZ" secondAttribute="top" id="gIJ-TC-V2o"/>
@@ -1110,6 +1145,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="NWc-uE-VcJ" secondAttribute="trailing" constant="30" id="qag-6l-UFj"/>
                             <constraint firstItem="NWc-uE-VcJ" firstAttribute="top" secondItem="DGH-xd-6QZ" secondAttribute="bottom" constant="30" id="vaa-DZ-VYv"/>
                             <constraint firstItem="ekt-He-mNd" firstAttribute="centerX" secondItem="Gqg-2d-cdZ" secondAttribute="centerX" id="won-Dm-Bce"/>
+                            <constraint firstItem="jWT-hr-mwq" firstAttribute="top" secondItem="hmj-o9-6HA" secondAttribute="bottom" constant="40" id="ynR-dF-0eR"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="ujZ-D5-GYG" appends="YES" id="kNs-AS-gii"/>
@@ -2152,7 +2188,7 @@ Rambler&amp;Co</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="boundingRect" translatesAutoresizingMaskIntoConstraints="NO" id="k21-d1-fQe">
-                                <rect key="frame" x="196" y="279" width="643" height="442"/>
+                                <rect key="frame" x="191" y="249" width="643" height="442"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -3866,12 +3902,21 @@ Rect</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tap" translatesAutoresizingMaskIntoConstraints="NO" id="3m9-bT-QvR">
+                                <rect key="frame" x="834" y="628" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="ELY-64-DVb"/>
+                                    <constraint firstAttribute="width" constant="90" id="Jpb-Ir-PFy"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="lNF-Lq-nbA" firstAttribute="top" secondItem="rfw-BX-q3K" secondAttribute="bottom" constant="80" id="3b4-Fy-1Aq"/>
+                            <constraint firstItem="SuI-xx-UkH" firstAttribute="top" secondItem="3m9-bT-QvR" secondAttribute="bottom" constant="50" id="6a0-NP-qI0"/>
                             <constraint firstAttribute="trailing" secondItem="lNF-Lq-nbA" secondAttribute="trailing" constant="80" id="8vw-9J-tVy"/>
+                            <constraint firstAttribute="trailing" secondItem="3m9-bT-QvR" secondAttribute="trailing" constant="100" id="Iot-na-LJx"/>
                             <constraint firstItem="lNF-Lq-nbA" firstAttribute="leading" secondItem="4F0-CQ-bIb" secondAttribute="leading" constant="80" id="xWM-A3-gXX"/>
                         </constraints>
                         <connections>
@@ -4667,7 +4712,13 @@ Rect</string>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfQ-on-qG2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type @channel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPY-5c-vi9">
+                                <rect key="frame" x="100" y="699" width="135" height="19"/>
+                                <fontDescription key="fontDescription" name="Rambler-Regular" family="Rambler" pointSize="19"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfQ-on-qG2">
                                 <rect key="frame" x="59" y="220.5" width="932" height="456.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5449,17 +5500,28 @@ CiAgICAgICAgICAgIA
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FyQ-yl-ntm">
-                                <rect key="frame" x="113" y="199" width="799" height="487"/>
+                                <rect key="frame" x="113" y="199" width="799" height="348"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tap" translatesAutoresizingMaskIntoConstraints="NO" id="t7F-gi-KnV">
+                                <rect key="frame" x="814" y="628" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="oXA-q7-Qyu"/>
+                                    <constraint firstAttribute="height" constant="90" id="yya-7Y-elX"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="Apx-Ty-sCd" firstAttribute="top" secondItem="DPY-5c-vi9" secondAttribute="bottom" constant="50" id="3vy-x8-beH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="t7F-gi-KnV" secondAttribute="trailing" constant="100" id="NIP-Fc-mkb"/>
                             <constraint firstItem="neo-No-y1w" firstAttribute="leading" secondItem="gtf-BT-qQk" secondAttribute="leading" constant="80" id="XFY-FO-CfC"/>
+                            <constraint firstItem="DPY-5c-vi9" firstAttribute="leading" secondItem="gtf-BT-qQk" secondAttribute="leading" constant="100" id="YF4-DD-ZrT"/>
                             <constraint firstItem="neo-No-y1w" firstAttribute="top" secondItem="Los-T2-gLS" secondAttribute="bottom" constant="80" id="mr1-UG-c3g"/>
                             <constraint firstAttribute="trailing" secondItem="neo-No-y1w" secondAttribute="trailing" constant="80" id="nyG-Z0-dLK"/>
+                            <constraint firstItem="Apx-Ty-sCd" firstAttribute="top" secondItem="t7F-gi-KnV" secondAttribute="bottom" constant="50" id="oWU-1y-cV2"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="5sB-RK-jIF" appends="YES" id="bfD-9l-J05"/>
@@ -5601,9 +5663,20 @@ CiAgICAgICAgICAgIA
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tap" translatesAutoresizingMaskIntoConstraints="NO" id="daH-UN-20O">
+                                <rect key="frame" x="814" y="628" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="XeD-Q5-XEd"/>
+                                    <constraint firstAttribute="height" constant="90" id="lAv-yt-EwH"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="L70-TT-D1K" firstAttribute="top" secondItem="daH-UN-20O" secondAttribute="bottom" constant="50" id="13q-c0-vSy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="daH-UN-20O" secondAttribute="trailing" constant="100" id="SdC-u7-XMY"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="N7O-A2-p9q" appends="YES" id="fWZ-9H-a6Q"/>
                         </connections>
@@ -5940,5 +6013,7 @@ CiAgICAgICAgICAgIA
         <image name="photo" width="480" height="640"/>
         <image name="plan" width="703" height="348"/>
         <image name="skype (1)" width="100" height="100"/>
+        <image name="tap" width="256" height="256"/>
+        <image name="tap_small" width="25" height="25"/>
     </resources>
 </document>

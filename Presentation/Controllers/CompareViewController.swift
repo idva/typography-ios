@@ -55,8 +55,8 @@ class CompareViewController: SlideViewController {
         } else {
             textView.textContainer.lineFragmentPadding = 5
         }
-        textView.layoutManager.invalidateLayout(forCharacterRange: NSMakeRange(0, textView.text.characters.count), actualCharacterRange: nil)
-        textView.layoutManager.invalidateDisplay(forCharacterRange: NSMakeRange(0, textView.text.characters.count))
+        textView.layoutManager.invalidateLayout(forCharacterRange: NSMakeRange(0, textView.text.count), actualCharacterRange: nil)
+        textView.layoutManager.invalidateDisplay(forCharacterRange: NSMakeRange(0, textView.text.count))
     }
     
     @IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
